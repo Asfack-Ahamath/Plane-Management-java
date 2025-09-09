@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PlaneManagement.gui.FXController">
+    
+    <!-- Clean Modern Header -->
+    <top>
+        <VBox styleClass="header-container">
+            <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header-bar">
+                <padding>
+                    <Insets top="15" bottom="15" left="25" right="25" />
+                </padding>
+                
+                <!-- Logo and Title Section -->
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <Label text="✈" styleClass="logo-icon" />
+                    <VBox alignment="CENTER_LEFT" spacing="2">
+                        <Label text="AIRLINE MANAGEMENT" styleClass="main-title" />
+                        <Label text="Professional Seat Booking System" styleClass="subtitle" />
+                    </VBox>
+                </HBox>
+                
+                <Region HBox.hgrow="ALWAYS" />
+                
+                <!-- Status Indicators -->
+                <HBox spacing="15" alignment="CENTER_RIGHT">
+                    <VBox alignment="CENTER" spacing="2">
+                        <Label text="SYSTEM STATUS" styleClass="status-header" />
+                        <HBox spacing="8" alignment="CENTER">
+                            <Label text="●" styleClass="status-indicator-online" />
+                            <Label text="Online" styleClass="status-text" />
+                        </HBox>
+                    </VBox>
+                    <VBox alignment="CENTER" spacing="2">
+                        <Label text="FLIGHT STATUS" styleClass="status-header" />
+                        <HBox spacing="8" alignment="CENTER">
+                            <Label text="●" styleClass="status-indicator-active" />
+                            <Label text="Active" styleClass="status-text" />
+                        </HBox>
+                    </VBox>
+                </HBox>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <!-- Main Content Area -->
+    <center>
+        <HBox spacing="15" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="15" bottom="15" left="15" right="15" />
+            </padding>
+            
+            <!-- Left Panel: Booking Form -->
+            <VBox spacing="12" prefWidth="280" styleClass="booking-panel">
+                <!-- Passenger Information Card -->
+                <VBox spacing="10" styleClass="info-card">
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label text="👤" styleClass="card-icon" />
+                        <Label text="PASSENGER INFORMATION" styleClass="card-title" />
+                    </HBox>
+                    
+                    <VBox spacing="8">
+                        <VBox spacing="4">
+                            <Label text="First Name" styleClass="input-label" />
+                            <TextField fx:id="nameTextField" styleClass="modern-input" promptText="Enter your first name" />
+                        </VBox>
+                        
+                        <VBox spacing="4">
+                            <Label text="Last Name" styleClass="input-label" />
+                            <TextField fx:id="surnameTextField" styleClass="modern-input" promptText="Enter your last name" />
+                        </VBox>
+                        
+                        <VBox spacing="4">
+                            <Label text="Email Address" styleClass="input-label" />
+                            <TextField fx:id="emailTextField" styleClass="modern-input" promptText="Enter your email address" />
+                        </VBox>
+                    </VBox>
+                </VBox>
+                
+                <!-- Seat Selection Card -->
+                <VBox spacing="10" styleClass="info-card">
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label text="🪑" styleClass="card-icon" />
+                        <Label text="SEAT SELECTION" styleClass="card-title" />
+                    </HBox>
+                    
+                    <VBox spacing="8">
+                        <VBox spacing="5">
+                            <Label text="Choose Row" styleClass="input-label" />
+                            <HBox spacing="5" alignment="CENTER_LEFT">
+                                <ToggleButton text="A" fx:id="rowARadioButton" styleClass="row-toggle" />
+                                <ToggleButton text="B" fx:id="rowBRadioButton" styleClass="row-toggle" />
+                                <ToggleButton text="C" fx:id="rowCRadioButton" styleClass="row-toggle" />
+                                <ToggleButton text="D" fx:id="rowDRadioButton" styleClass="row-toggle" />
+                            </HBox>
+                        </VBox>
+                        
+                        <VBox spacing="5">
+                            <Label text="Seat Number" styleClass="input-label" />
+                            <ComboBox fx:id="seatComboBox" styleClass="modern-combo" promptText="Select seat number" />
+                        </VBox>
+                        
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <Label text="Price:" styleClass="price-label" />
+                            <Label fx:id="priceLabel" styleClass="price-value" />
+                        </HBox>
+                    </VBox>
+                </VBox>
+                
+                <!-- Action Buttons Card -->
+                <VBox spacing="8" styleClass="action-card">
+                    <Button text="✓ CONFIRM BOOKING" fx:id="buyButton" styleClass="primary-button" maxWidth="Infinity" />
+                    <Button text="✗ CANCEL BOOKING" fx:id="cancelButton" styleClass="danger-button" maxWidth="Infinity" />
+                </VBox>
+            </VBox>
+            
+            <!-- Center Panel: Statistics + Seat Map -->
+            <VBox spacing="12" prefWidth="500" styleClass="seat-map-panel">
+                <!-- Statistics Card -->
+                <VBox spacing="10" styleClass="info-card">
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label text="📊" styleClass="card-icon" />
+                        <Label text="FLIGHT STATISTICS" styleClass="card-title" />
+                    </HBox>
+                    
+                    <HBox spacing="15" alignment="CENTER">
+                        <VBox alignment="CENTER" spacing="3" styleClass="stat-card">
+                            <Label text="TOTAL" styleClass="stat-label" />
+                            <Label fx:id="totalSeatsLabel" text="52" styleClass="stat-value" />
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="3" styleClass="stat-card">
+                            <Label text="BOOKED" styleClass="stat-label" />
+                            <Label fx:id="bookedSeatsLabel" text="0" styleClass="stat-value" />
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="3" styleClass="stat-card">
+                            <Label text="AVAILABLE" styleClass="stat-label" />
+                            <Label fx:id="availableSeatsLabel" text="52" styleClass="stat-value" />
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <HBox spacing="8" alignment="CENTER_RIGHT">
+                            <Label text="Occupancy:" styleClass="occupancy-label" />
+                            <Label fx:id="occupancyLabel" text="0%" styleClass="occupancy-value" />
+                            <ProgressBar fx:id="occupancyProgressBar" prefWidth="80" styleClass="modern-progress" />
+                        </HBox>
+                    </HBox>
+                </VBox>
+                
+                <!-- Seat Map Header -->
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label text="🗺️" styleClass="card-icon" />
+                        <Label text="INTERACTIVE SEAT MAP" styleClass="card-title" />
+                    </HBox>
+                    <Region HBox.hgrow="ALWAYS" />
+                </HBox>
+                
+                <!-- Enhanced Seat Grid -->
+                <VBox spacing="6" alignment="CENTER" styleClass="seat-grid-container">
+                    <VBox spacing="4" alignment="CENTER" fx:id="seatMapGrid">
+                        <!-- Seat Number Headers -->
+                        <HBox spacing="4" alignment="CENTER">
+                            <Label text="" prefWidth="30" />
+                            <Label text="1" styleClass="seat-header" />
+                            <Label text="2" styleClass="seat-header" />
+                            <Label text="3" styleClass="seat-header" />
+                            <Label text="4" styleClass="seat-header" />
+                            <Label text="5" styleClass="seat-header" />
+                            <Label text="6" styleClass="seat-header" />
+                            <Label text="7" styleClass="seat-header" />
+                            <Label text="8" styleClass="seat-header" />
+                            <Label text="9" styleClass="seat-header" />
+                            <Label text="10" styleClass="seat-header" />
+                            <Label text="11" styleClass="seat-header" />
+                            <Label text="12" styleClass="seat-header" />
+                            <Label text="13" styleClass="seat-header" />
+                            <Label text="14" styleClass="seat-header" />
+                        </HBox>
+                        
+                        <!-- Row A -->
+                        <HBox spacing="4" alignment="CENTER">
+                            <Label text="A" styleClass="row-header" />
+                            <Button text="1" styleClass="seat-button" />
+                            <Button text="2" styleClass="seat-button" />
+                            <Button text="3" styleClass="seat-button" />
+                            <Button text="4" styleClass="seat-button" />
+                            <Button text="5" styleClass="seat-button" />
+                            <Button text="6" styleClass="seat-button" />
+                            <Button text="7" styleClass="seat-button" />
+                            <Button text="8" styleClass="seat-button" />
+                            <Button text="9" styleClass="seat-button" />
+                            <Button text="10" styleClass="seat-button" />
+                            <Button text="11" styleClass="seat-button" />
+                            <Button text="12" styleClass="seat-button" />
+                            <Button text="13" styleClass="seat-button" />
+                            <Button text="14" styleClass="seat-button" />
+                        </HBox>
+                        
+                        <!-- Row B -->
+                        <HBox spacing="4" alignment="CENTER">
+                            <Label text="B" styleClass="row-header" />
+                            <Button text="1" styleClass="seat-button" />
+                            <Button text="2" styleClass="seat-button" />
+                            <Button text="3" styleClass="seat-button" />
+                            <Button text="4" styleClass="seat-button" />
+                            <Button text="5" styleClass="seat-button" />
+                            <Button text="6" styleClass="seat-button" />
+                            <Button text="7" styleClass="seat-button" />
+                            <Button text="8" styleClass="seat-button" />
+                            <Button text="9" styleClass="seat-button" />
+                            <Button text="10" styleClass="seat-button" />
+                            <Button text="11" styleClass="seat-button" />
+                            <Button text="12" styleClass="seat-button" />
+                        </HBox>
+                        
+                        <!-- Row C -->
+                        <HBox spacing="4" alignment="CENTER">
+                            <Label text="C" styleClass="row-header" />
+                            <Button text="1" styleClass="seat-button" />
+                            <Button text="2" styleClass="seat-button" />
+                            <Button text="3" styleClass="seat-button" />
+                            <Button text="4" styleClass="seat-button" />
+                            <Button text="5" styleClass="seat-button" />
+                            <Button text="6" styleClass="seat-button" />
+                            <Button text="7" styleClass="seat-button" />
+                            <Button text="8" styleClass="seat-button" />
+                            <Button text="9" styleClass="seat-button" />
+                            <Button text="10" styleClass="seat-button" />
+                            <Button text="11" styleClass="seat-button" />
+                            <Button text="12" styleClass="seat-button" />
+                        </HBox>
+                        
+                        <!-- Row D -->
+                        <HBox spacing="4" alignment="CENTER">
+                            <Label text="D" styleClass="row-header" />
+                            <Button text="1" styleClass="seat-button" />
+                            <Button text="2" styleClass="seat-button" />
+                            <Button text="3" styleClass="seat-button" />
+                            <Button text="4" styleClass="seat-button" />
+                            <Button text="5" styleClass="seat-button" />
+                            <Button text="6" styleClass="seat-button" />
+                            <Button text="7" styleClass="seat-button" />
+                            <Button text="8" styleClass="seat-button" />
+                            <Button text="9" styleClass="seat-button" />
+                            <Button text="10" styleClass="seat-button" />
+                            <Button text="11" styleClass="seat-button" />
+                            <Button text="12" styleClass="seat-button" />
+                            <Button text="13" styleClass="seat-button" />
+                            <Button text="14" styleClass="seat-button" />
+                        </HBox>
+                    </VBox>
+                    
+                    <!-- Clean Legend -->
+                    <HBox spacing="15" alignment="CENTER" styleClass="legend-container">
+                        <HBox spacing="5" alignment="CENTER">
+                            <Label text="🟢" styleClass="legend-icon" />
+                            <Label text="Available" styleClass="legend-text" />
+                        </HBox>
+                        <HBox spacing="5" alignment="CENTER">
+                            <Label text="🔴" styleClass="legend-icon" />
+                            <Label text="Occupied" styleClass="legend-text" />
+                        </HBox>
+                        <HBox spacing="5" alignment="CENTER">
+                            <Label text="🟡" styleClass="legend-icon" />
+                            <Label text="Selected" styleClass="legend-text" />
+                        </HBox>
+                    </HBox>
+                </VBox>
+            </VBox>
+            
+            <!-- Right Panel: Quick Actions -->
+            <VBox spacing="12" prefWidth="200" styleClass="dashboard-panel">
+                <!-- Quick Actions Card -->
+                <VBox spacing="10" styleClass="info-card">
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label text="⚡" styleClass="card-icon" />
+                        <Label text="QUICK ACTIONS" styleClass="card-title" />
+                    </HBox>
+                    
+                    <VBox spacing="6">
+                        <Button text="🔍 Find Available" fx:id="findButton" styleClass="action-button" maxWidth="Infinity" />
+                        <Button text="🗺️ View Full Map" fx:id="showButton" styleClass="action-button" maxWidth="Infinity" />
+                        <Button text="📋 Generate Report" fx:id="printButton" styleClass="action-button" maxWidth="Infinity" />
+                        <Button text="🔎 Search Booking" fx:id="searchButton" styleClass="action-button" maxWidth="Infinity" />
+                    </VBox>
+                </VBox>
+                
+                <!-- Pricing Information Card -->
+                <VBox spacing="10" styleClass="info-card">
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label text="💰" styleClass="card-icon" />
+                        <Label text="PRICING" styleClass="card-title" />
+                    </HBox>
+                    
+                    <VBox spacing="5">
+                        <HBox spacing="6" alignment="CENTER_LEFT">
+                            <Label text="Premium (1-5):" styleClass="pricing-label" />
+                            <Label text="£200" styleClass="pricing-value-premium" />
+                        </HBox>
+                        <HBox spacing="6" alignment="CENTER_LEFT">
+                            <Label text="Standard (6-9):" styleClass="pricing-label" />
+                            <Label text="£150" styleClass="pricing-value-standard" />
+                        </HBox>
+                        <HBox spacing="6" alignment="CENTER_LEFT">
+                            <Label text="Economy+ (10+):" styleClass="pricing-label" />
+                            <Label text="£180" styleClass="pricing-value-economy" />
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </VBox>
+        </HBox>
+    </center>
+    
+    <!-- Compact Footer -->
+    <bottom>
+        <VBox styleClass="footer-container">
+            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="footer-bar">
+                <padding>
+                    <Insets top="8" bottom="8" left="15" right="15" />
+                </padding>
+                
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="💬" styleClass="footer-icon" />
+                    <Label text="System Messages" styleClass="footer-title" />
+                </HBox>
+                
+                <Region HBox.hgrow="ALWAYS" />
+                
+                <ScrollPane fitToWidth="true" fitToHeight="true" maxWidth="400" maxHeight="35" styleClass="message-scroll">
+                    <TextArea fx:id="outputTextArea" styleClass="message-area" editable="false" wrapText="true" />
+                </ScrollPane>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

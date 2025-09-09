@@ -1,5 +1,7 @@
 package org.example.PlaneManagement;
 
+import org.example.PlaneManagement.cli.PlaneManagement;
+import org.example.PlaneManagement.gui.JavaFXUI;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
